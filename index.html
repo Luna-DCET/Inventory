@@ -2,160 +2,148 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
     <title>Inventory Management System</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
-
 <body>
+
+    <!-- TOP HEADER -->
+
     <div style="text-align: center; padding: 20px;">
         <h1>Inventory Management System</h1>
     </div>
-    <div style="display: flex;">
-        <div style="width: 20%; padding: 10px; border-right: 1px solid black;">
 
-            <h3>Search</h3>
-            <input type="text" placeholder="Search..." style="width: 90%; padding: 4px 6px; font-size: 0.9em; margin-bottom: 20px;">
+    <div style="padding: 0 20px;">
+        <table id="inventoryTable">
 
-            <h3>Filters</h3>
-            <label for="sortPrice">Sort by Price:</label>
-            <select id="sortPrice" onchange="sortTable('price')">
-                <option value="asc">Low to High</option>
-                <option value="desc">High to Low</option>
-            </select><br><br>
-            
-            <label for="sortDate">Sort by Date:</label>
-            <select id="sortDate" onchange="sortTable('date')">
-                <option value="asc">Oldest First</option>
-                <option value="desc">Newest First</option>
-            </select><br><br>
-            
-            <label for="sortDetails">Sort by Details:</label>
-            <select id="sortDetails" onchange="sortTable('details')">
-                <option value="asc">A to Z</option>
-                <option value="desc">Z to A</option>
-            </select><br><br>
-            
-            <label for="sortQuantity">Sort by Quantity:</label>
-            <select id="sortQuantity" onchange="sortTable('quantity')">
-                <option value="asc">Low to High</option>
-                <option value="desc">High to Low</option>
-            </select><br><br>
-        </div>
-        <div style="width: 80%; padding: 10px;">
-            <table border="1" width="100%" id="inventoryTable">
-                <tr>
-                    <th colspan="6">Product</th>
-                </tr>
-                <tr>
-                    <th>Name</th>
-                    <th data-type="details">Details</th>
-                    <th data-type="quantity">Quantity</th>
-                    <th data-type="price">Price</th>
-                    <th data-type="date">Date</th>
-                    <th>Actions</th>
-                </tr>
-                <tr>
-                    <td>Product A</td>
-                    <td data-value="Details A">Details A</td>
-                    <td data-value="5">5</td>
-                    <td data-value="50">$50</td>
-                    <td data-value="2025-03-25">2025-03-25</td>
-                    <td>
-                        <button onclick="editItem(this)">Edit</button>
-                        <button onclick="removeItem(this)">Remove</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Product B</td>
-                    <td data-value="Details B">Details B</td>
-                    <td data-value="15">15</td>
-                    <td data-value="150">$150</td>
-                    <td data-value="2025-03-28">2025-03-28</td>
-                    <td>
-                        <button onclick="editItem(this)">Edit</button>
-                        <button onclick="removeItem(this)">Remove</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Product C</td>
-                    <td data-value="Details C">Details C</td>
-                    <td data-value="8">8</td>
-                    <td data-value="80">$80</td>
-                    <td data-value="2025-03-27">2025-03-27</td>
-                    <td>
-                        <button onclick="editItem(this)">Edit</button>
-                        <button onclick="removeItem(this)">Remove</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Product D</td>
-                    <td data-value="Details D">Details D</td>
-                    <td data-value="20">20</td>
-                    <td data-value="200">$200</td>
-                    <td data-value="2025-03-29">2025-03-29</td>
-                    <td>
-                        <button onclick="editItem(this)">Edit</button>
-                        <button onclick="removeItem(this)">Remove</button>
-                    </td>
-                </tr>
-            </table>
-        </div>
+            <!-- PRODUCT HEADER -->
+            <tr>
+                <th colspan="6" class="product-header">
+                    Product
+                    <input type="text" id="searchBar" placeholder="Search product..." />
+                    <button id="addBtn">Add</button>
+                </th>
+            </tr>
+
+            <!-- COLUMNS -->
+
+            <tr>
+                <th onclick="sortTableByColumn(0)">Name <span class="sort-icon" data-col="0">↕</span></th>
+                <th onclick="sortTableByColumn(1)">Details <span class="sort-icon" data-col="1">↕</span></th>
+                <th onclick="sortTableByColumn(2)">Quantity <span class="sort-icon" data-col="2">↕</span></th>
+                <th onclick="sortTableByColumn(3)">Price <span class="sort-icon" data-col="3">↕</span></th>
+                <th onclick="sortTableByColumn(4)">Date <span class="sort-icon" data-col="4">↕</span></th>
+                <th>Actions</th>
+            </tr>
+
+            <!-- LIST STARTING HERE -->
+
+            <tr>
+                <td>Product A</td>
+                <td data-value="Details E">Details E</td>
+                <td data-value="5">5</td>
+                <td data-value="50">$50</td>
+                <td data-value="2025-01-25">2025-01-25</td>
+
+                <!-- BUTTONS -->
+
+                <td>
+                    <button onclick="editItem(this)">Edit</button>
+                    <button onclick="removeItem(this)">Remove</button>
+                </td>
+            </tr>
+            <tr>
+                <td>Product B</td>
+                <td data-value="Details A">Details A</td>
+                <td data-value="5">5</td>
+                <td data-value="150">$150</td>
+                <td data-value="2025-03-28">2025-03-28</td>
+                <td>
+
+                    <!-- BUTTONS -->
+
+                    <button onclick="editItem(this)">Edit</button>
+                    <button onclick="removeItem(this)">Remove</button>
+                </td>
+            </tr>
+            <tr>
+                <td>Product C</td>
+                <td data-value="Details D">Details D</td>
+                <td data-value="40">40</td>
+                <td data-value="200">$200</td>
+                <td data-value="2025-02-10">2025-02-10</td>
+                <td>
+
+                    <!-- BUTTONS -->
+
+                    <button onclick="editItem(this)">Edit</button>
+                    <button onclick="removeItem(this)">Remove</button>
+                </td>
+            </tr>
+            <tr>
+                <td>Product D</td>
+                <td data-value="Details B">Details B</td>
+                <td data-value="35">35</td>
+                <td data-value="120">$120</td>
+                <td data-value="2025-01-15">2025-01-15</td>
+                <td>
+
+                    <!-- BUTTONS -->
+
+                    <button onclick="editItem(this)">Edit</button>
+                    <button onclick="removeItem(this)">Remove</button>
+                </td>
+            </tr>
+            <tr>
+                <td>Product E</td>
+                <td data-value="Details C">Details C</td>
+                <td data-value="30">30</td>
+                <td data-value="75">$75</td>
+                <td data-value="2025-03-23">2025-03-23</td>
+                <td>
+
+                    <!-- BUTTONS -->
+
+                    <button onclick="editItem(this)">Edit</button>
+                    <button onclick="removeItem(this)">Remove</button>
+                </td>
+            </tr>
+        </table>
     </div>
-   
+
+    <!-- SAVE/EDIT MODAL -->
+
     <div id="editModal" class="modal">
         <div class="modal-content">
-            <span class="close">&times;</span>
+            <span class="close" id="closeBtn">&times;</span>
             <h2>Edit Product</h2>
-    
+
+            <!-- FORMS -->
+
             <form id="editForm">
                 <label for="editName">Name:</label><br>
-                <input type="text" id="editName" name="editName" placeholder="Enter product name"><br><br>
-    
+                <input type="text" id="editName"><br><br>
+
                 <label for="editDetails">Details:</label><br>
-                <input type="text" id="editDetails" name="editDetails" placeholder="Enter product details"><br><br>
-    
+                <input type="text" id="editDetails"><br><br>
+
                 <label for="editQuantity">Quantity:</label><br>
-                <input type="number" id="editQuantity" name="editQuantity" placeholder="Enter quantity"><br><br>
-    
+                <input type="number" id="editQuantity"><br><br>
+
                 <label for="editPrice">Price ($):</label><br>
-                <input type="number" id="editPrice" name="editPrice" placeholder="Enter price"><br><br>
-    
+                <input type="number" id="editPrice"><br><br>
+
                 <label for="editDate">Date:</label><br>
-                <input type="date" id="editDate" name="editDate"><br><br>
-    
-                <button type="submit">Save Changes</button>
+                <input type="date" id="editDate"><br><br>
+
+                <button type="submit" id="saveBtn">Save Changes</button>
             </form>
         </div>
     </div>
 
-    <script>
-        function editItem(button) {
-            alert("Edit functionality to be implemented");
-        }
-        function removeItem(button) {
-            button.parentElement.parentElement.remove();
-        }
-        function sortTable(type) {
-            let table = document.getElementById("inventoryTable");
-            let rows = Array.from(table.rows).slice(2);
-            let sortOrder = document.getElementById('sort' + type.charAt(0).toUpperCase() + type.slice(1)).value;
-            
-            rows.sort((a, b) => {
-                let valA = a.cells[type === 'details' ? 1 : type === 'quantity' ? 2 : type === 'price' ? 3 : 4].getAttribute("data-value");
-                let valB = b.cells[type === 'details' ? 1 : type === 'quantity' ? 2 : type === 'price' ? 3 : 4].getAttribute("data-value");
-                
-                if (type === 'details') {
-                    return sortOrder === "asc" ? valA.localeCompare(valB) : valB.localeCompare(valA);
-                } else {
-                    return sortOrder === "asc" ? parseFloat(valA) - parseFloat(valB) : parseFloat(valB) - parseFloat(valA);
-                }
-            });
-            
-            rows.forEach(row => table.appendChild(row));
-        }
-    </script>
+    <!-- JS FILE -->
+
+    <script src="script.js"></script>
 
 </body>
 </html>
